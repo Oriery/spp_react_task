@@ -43,15 +43,11 @@ export default class App extends React.Component {
   };
 
   onDateSelect = (date) => {
-    console.log(this.state.date);
     this.setState({ date });
-    console.log(this.state.date);
   };
 
   onResetDate = () => {
-    console.log(this.state.date);
     this.setState({ date: null });
-    console.log(this.state.date);
   };
 
   render() {
