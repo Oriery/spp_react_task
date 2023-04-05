@@ -15,9 +15,15 @@ class DatePicker extends React.Component {
   componentDidMount() {
     $(this.inputRef).datepicker({
       dateFormat: 'dd/mm/yy',
-      onSelect: console.log,
+      onSelect: this.props.onSelect,
     });
     $(this.inputRef).datepicker('setDate', this.props.value || '');
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.value !== this.props.value) {
+      $(this.inputRef).datepicker('setDate', this.props.value || '');
+    }
   }
 
   render() {
@@ -36,6 +42,18 @@ export default class App extends React.Component {
     date: '1/4/2023',
   };
 
+  onDateSelect = (date) => {
+    console.log(this.state.date);
+    this.setState({ date });
+    console.log(this.state.date);
+  };
+
+  onResetDate = () => {
+    console.log(this.state.date);
+    this.setState({ date: null });
+    console.log(this.state.date);
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -43,10 +61,10 @@ export default class App extends React.Component {
           {this.state.date ? `Date: ${this.state.date}` : 'Select date'}{' '}
         </div>
         <div>
-          <DatePicker />
+          <DatePicker value={this.state.date} onSelect={this.onDateSelect} />
         </div>
         <div>
-          <button>Reset date</button>
+          <button onClick={this.onResetDate}>Reset date</button>
         </div>
       </React.Fragment>
     );
