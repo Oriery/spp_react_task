@@ -15,7 +15,9 @@ class DatePicker extends React.Component {
   componentDidMount() {
     $(this.inputRef).datepicker({
       dateFormat: 'dd/mm/yy',
-      onSelect: this.props.onSelect,
+      onSelect: (date) => {
+        this.props.onSelect(date);
+      },
     });
     $(this.inputRef).datepicker('setDate', this.props.value || '');
   }
@@ -29,6 +31,8 @@ class DatePicker extends React.Component {
   render() {
     return (
       <input
+        value={this.props.value || ''}
+        onChange={() => {}}
         ref={(domElement) => {
           this.inputRef = domElement;
         }}
