@@ -22,12 +22,6 @@ class DatePicker extends React.Component {
     $(this.inputRef).datepicker('setDate', this.props.value || '');
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.value !== this.props.value) {
-      $(this.inputRef).datepicker('setDate', this.props.value || '');
-    }
-  }
-
   render() {
     return (
       <input
